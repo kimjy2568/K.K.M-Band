@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import winsound
-import time
 
 # Mediapipe 설정
 mp_hands = mp.solutions.hands
@@ -33,8 +32,6 @@ def is_finger_folded(hand_landmarks, finger_tip, finger_dip):
 cap = cv2.VideoCapture(0)
 
 while True:
-    start_time = time.time()
-
     ret, frame = cap.read()
     if not ret:
         break
@@ -78,9 +75,6 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-    # 0.5초 대기
-    elapsed_time = time.time() - start_time
-    time.sleep(max(0, 0.5 - elapsed_time))
 
 cap.release()
 cv2.destroyAllWindows()
